@@ -1385,7 +1385,7 @@ class TestGetCertificates(TestCase):
         certificates = get_certificates(self.user, self.program)
         self.assertEqual(certificates, expected)
 
-    def test_get_program_certificate_url(self, mock_get_credentials):  # pylint: disable=unused-variable
+    def test_get_program_certificate_url(self, mock_get_credentials):  # pylint: disable=unused-argument
         """
         Verify that function returns correct url with login prepended
         """
