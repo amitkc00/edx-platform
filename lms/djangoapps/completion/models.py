@@ -11,6 +11,7 @@ from django.utils.translation import ugettext as _
 from model_utils.models import TimeStampedModel
 from opaque_keys.edx.django.models import CourseKeyField, UsageKeyField
 from opaque_keys.edx.keys import CourseKey
+from opaque_keys.edx.locator import CourseLocator
 
 from . import waffle
 
@@ -201,15 +202,21 @@ class BlockCompletion(TimeStampedModel, models.Model):
         """
         query latest completion for user (any course)
         Return value:
-            obj: block completion
+            dict[courseKey]: modified_date
         """
-        try:
-            # make query by course ID, in
-            latest_global_modified_block_completion = \
-                cls.objects.filter(user=user).order_by('modified').distinct('course_key')
-        except cls.DoesNotExist:
-            return
-        return latest_global_modified_block_completion
+
+        latest_completions_by_course = cls.objects.raw(
+            '''
+            SELECT id, course_key, max(modified) as latest
+            FROM completion_blockcompletion
+            WHERE user_id=%s
+            GROUP BY course_key;
+            ''',
+            [user.id]
+        )
+        return {
+            completion.course_key: completion.modified for completion in latest_completions_by_course
+        }
 
     @classmethod
     def get_latest_block_completed(cls, user, course_key):

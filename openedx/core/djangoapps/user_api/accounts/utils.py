@@ -13,6 +13,8 @@ from lms.djangoapps.completion.models import BlockCompletion
 from lms.djangoapps.completion.waffle import visual_progress_enabled
 from openedx.core.djangoapps.site_configuration.models import SiteConfiguration
 from xmodule.modulestore.django import modulestore
+from openedx.core.djangoapps.theming.helpers import get_current_site, get_config_value_from_site_or_settings
+
 
 
 def validate_social_link(platform_name, new_social_link):
@@ -117,24 +119,62 @@ def retrieve_last_block_completed_url(username):
         userobj = username
 
     try:
-        resume_block_key = BlockCompletion.get_all_courses_blocks_completed(userobj).block_key
+        resume_block_key = BlockCompletion.get_all_courses_blocks_completed(userobj)
     except AttributeError:
         return
 
-    item = modulestore().get_item(resume_block_key, depth=1)
-    lms_base = SiteConfiguration.get_value_for_org(
-        item.location.org,
-        "LMS_BASE",
-        settings.LMS_BASE
-    )
-    if not lms_base:
-        return
+    known_site_configs = [
+        other_site_config.get_value('course_org_filter') for other_site_config in SiteConfiguration.objects.all()
+        ]
 
-    if lms_base == 'edx.devstack.lms:18000':
-        lms_base = 'localhost:18000'
-
-    return u"//{lms_base}/courses/{course_key}/jump_to/{location}".format(
-        lms_base=lms_base,
-        course_key=text_type(item.location.course_key),
-        location=text_type(item.location),
+    current_site_configuration = get_config_value_from_site_or_settings(
+        name='course_org_filter',
+        site=get_current_site()
     )
+    # try:
+    #     known_site_configs.remove(current_site_configuration)
+    # except ValueError:
+    #     pass
+
+    print '***'
+    print known_site_configs
+    print current_site_configuration
+    print resume_block_key
+    print '***'
+    for key, entry in resume_block_key.items():
+        print key.org
+
+    print '!!!!'
+    #
+    #     print 'NO DICE'
+    #     return
+    #
+
+
+    # lms_base = SiteConfiguration.get_value_for_org(course_key.org, "LMS_BASE", settings.LMS_BASE)
+
+    # print SiteConfiguration()
+    # check for site orgs
+    # match org in course_key (if none, 'courses.edx.org'
+    # get latest
+
+    # item = modulestore().get_item(resume_block_key, depth=1)
+    #
+    # # print SiteConfiguration.has_org()
+    #
+    # lms_base = SiteConfiguration.get_value_for_org(
+    #     item.location.org,
+    #     "LMS_BASE",
+    #     settings.LMS_BASE
+    # )
+    # if not lms_base:
+    #     return
+    #
+    # if lms_base == 'edx.devstack.lms:18000':
+    #     lms_base = 'localhost:18000'
+    #
+    # return u"//{lms_base}/courses/{course_key}/jump_to/{location}".format(
+    #     lms_base=lms_base,
+    #     course_key=text_type(item.location.course_key),
+    #     location=text_type(item.location),
+    # )
