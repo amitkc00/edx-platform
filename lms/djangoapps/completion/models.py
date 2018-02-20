@@ -197,15 +197,16 @@ class BlockCompletion(TimeStampedModel, models.Model):
         return {completion.block_key: completion.completion for completion in course_block_completions}
 
     @classmethod
-    def get_last_sitewide_block_completed(cls, user):
+    def get_all_courses_blocks_completed(cls, user):
         """
         query latest completion for user (any course)
         Return value:
             obj: block completion
         """
-
         try:
-            latest_global_modified_block_completion = cls.objects.filter(user=user).latest()
+            # make query by course ID, in
+            latest_global_modified_block_completion = \
+                cls.objects.filter(user=user).order_by('modified').distinct('course_key')
         except cls.DoesNotExist:
             return
         return latest_global_modified_block_completion

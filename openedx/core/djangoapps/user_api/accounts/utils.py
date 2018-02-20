@@ -117,7 +117,7 @@ def retrieve_last_block_completed_url(username):
         userobj = username
 
     try:
-        resume_block_key = BlockCompletion.get_last_sitewide_block_completed(userobj).block_key
+        resume_block_key = BlockCompletion.get_all_courses_blocks_completed(userobj).block_key
     except AttributeError:
         return
 
