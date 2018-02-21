@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1a\n"
 "Report-Msgid-Bugs-To: openedx-translation@googlegroups.com\n"
-"POT-Creation-Date: 2018-02-14 08:01+0000\n"
-"PO-Revision-Date: 2018-02-14 08:08:26.291716\n"
+"POT-Creation-Date: 2018-02-21 13:53+0000\n"
+"PO-Revision-Date: 2018-02-21 14:00:51.729527\n"
 "Last-Translator: \n"
 "Language-Team: openedx-translation <openedx-translation@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -4522,6 +4522,10 @@ msgid "Open edX"
 msgstr ""
 
 #: lms/djangoapps/branding/api.py
+msgid "Trademarks"
+msgstr ""
+
+#: lms/djangoapps/branding/api.py
 #, python-brace-format
 msgid "Download the {platform_name} mobile app from the Apple App Store"
 msgstr ""
@@ -5086,39 +5090,6 @@ msgstr ""
 msgid ""
 "If your course does not appear on your dashboard, contact "
 "{payment_support_link}."
-msgstr ""
-
-#: lms/djangoapps/completion/api/v1/views.py
-msgid ""
-"BlockCompletion.objects.submit_batch_completion should not be called when "
-"the feature is disabled."
-msgstr ""
-
-#: lms/djangoapps/completion/api/v1/views.py
-#, python-brace-format
-msgid "Key '{key}' not found."
-msgstr ""
-
-#: lms/djangoapps/completion/api/v1/views.py
-msgid "Invalid course key: {}"
-msgstr ""
-
-#: lms/djangoapps/completion/api/v1/views.py
-msgid "User is not enrolled in course."
-msgstr ""
-
-#: lms/djangoapps/completion/api/v1/views.py
-#, python-brace-format
-msgid "Block with key: '{key}' is not in course {course}"
-msgstr ""
-
-#: lms/djangoapps/completion/api/v1/views.py
-msgid "ok"
-msgstr ""
-
-#: lms/djangoapps/completion/models.py
-#, python-brace-format
-msgid "{value} must be between 0.0 and 1.0"
 msgstr ""
 
 #: lms/djangoapps/course_goals/models.py

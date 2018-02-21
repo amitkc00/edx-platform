@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1a\n"
 "Report-Msgid-Bugs-To: openedx-translation@googlegroups.com\n"
-"POT-Creation-Date: 2018-02-14 08:01+0000\n"
-"PO-Revision-Date: 2018-02-14 08:08:26.617924\n"
+"POT-Creation-Date: 2018-02-21 13:53+0000\n"
+"PO-Revision-Date: 2018-02-21 14:00:52.331502\n"
 "Last-Translator: \n"
 "Language-Team: openedx-translation <openedx-translation@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -34,9 +34,9 @@ msgstr ""
 msgid "Content"
 msgstr ""
 
-#: cms/templates/asset_index.html cms/templates/asset_index.html
-#: cms/templates/certificates.html cms/templates/container.html
-#: cms/templates/course_outline.html cms/templates/group_configurations.html
+#: cms/templates/asset_index.html cms/templates/certificates.html
+#: cms/templates/container.html cms/templates/course_outline.html
+#: cms/templates/group_configurations.html
 #: cms/templates/group_configurations.html cms/templates/library.html
 #: cms/templates/manage_users.html cms/templates/manage_users_lib.html
 #: lms/templates/courseware/courses.html lms/templates/edxnotes/edxnotes.html
@@ -8306,17 +8306,16 @@ msgid "Upgrade ({price})"
 msgstr ""
 
 #: openedx/features/course_experience/templates/course_experience/course-outline-fragment-new.html
-#: openedx/features/course_experience/templates/course_experience/course-outline-fragment-old.html
-msgid "Unlocked"
-msgstr ""
-
-#: openedx/features/course_experience/templates/course_experience/course-outline-fragment-new.html
 msgid "Prerequisite: "
 msgstr ""
 
 #: openedx/features/course_experience/templates/course_experience/course-outline-fragment-new.html
 #: openedx/features/course_experience/templates/course_experience/course-outline-fragment-old.html
 msgid "{subsection_format} due {{date}}"
+msgstr ""
+
+#: openedx/features/course_experience/templates/course_experience/course-outline-fragment-old.html
+msgid "Unlocked"
 msgstr ""
 
 #: openedx/features/course_experience/templates/course_experience/course-outline-fragment-old.html
@@ -8522,8 +8521,8 @@ msgstr ""
 
 #: themes/edx.org/lms/templates/footer.html
 msgid ""
-"EdX, Open edX, and MicroMasters are trademarks of edX Inc., registered in "
-"the U.S. and other countries."
+"EdX, Open edX, and MicroMasters are registered trademarks of edX Inc. "
+"粤ICP备17044299号-2. "
 msgstr ""
 
 #: themes/edx.org/lms/templates/footer.html
