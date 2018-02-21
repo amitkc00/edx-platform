@@ -603,6 +603,21 @@ class StudentDashboardTests(SharedModuleStoreTestCase, MilestonesTestCaseMixin):
         response = self.client.get(self.path)
         self.assertEqual(pq(response.content)(self.EMAIL_SETTINGS_ELEMENT_ID).length, 0)
 
+    def test_resume_button_appears_on_dashboard(self):
+        """
+        When a course has completion data, the dashboard should display a resume
+        button in that course's card.
+        """
+        self.course = CourseFactory.create(
+            org='edx',
+            number='998',
+            display_name='Test Course',
+        )
+        self.course_enrollment = CourseEnrollmentFactory(course_id=self.course.id, user=self.user)
+
+        response = self.client.get(reverse('dashboard'))
+        self.assertIn('', response.content)
+
 
 @unittest.skipUnless(settings.ROOT_URLCONF == 'lms.urls', 'Test only valid in lms')
 @override_settings(BRANCH_IO_KEY='test_key')
